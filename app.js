@@ -13,18 +13,28 @@
 			$scope.message = msg;
 		};
 
-		function generatemsg(string){
-			const list = string.split(',');
-			var count = list.length;
-			if(count == 0)
-			{
+		function generatemsg(listoftext){
+			if(listoftext === ""){
 				return "Please enter data first";
 			}
-			else if(count < 4){
+			else{
+			var count = 0;
+			const list = listoftext.split(',');
+
+			for (var idx in list) {
+	        if (list[idx].trim().length != 0) {
+	          count++;
+	        	}
+	      	}
+			count = list.length;
+			console.log(count);
+			if(count == 0) return 'jkhkj';
+			if(count < 4){
 				return "Enjoy!";
 			}
 			else{
 				return "To much!";
+			}
 			}
 		};
 	};
