@@ -9,34 +9,33 @@
 
 	function ReadText($scope) {
 		$scope.displaymsg = function () {
-			var msg = generatemsg($scope.listoftext);
-			$scope.message = msg;
+			var num = countdishes($scope.listoftext);
+			$scope.message = generatemsg(num);
 		};
 
-		function generatemsg(listoftext){
-			if(listoftext === ""){
-				return "Please enter data first";
-			}
-			else{
+		function countdishes(listoftext){
 			var count = 0;
-			const list = listoftext.split(',');
+			if(listoftext){
+				const list = listoftext.split(',');
+				for (var idx in list) {
+		        	if (list[idx].trim().length != 0) {
+		          		count++;
+		        	}
+		      	}
+			}
+		return count;
+		}
 
-			for (var idx in list) {
-	        if (list[idx].trim().length != 0) {
-	          count++;
-	        	}
-	      	}
-			count = list.length;
-			console.log(count);
-			if(count == 0) return 'jkhkj';
-			if(count < 4){
+		function generatemsg(num){
+			if(num === 0)
+				return "Please enter data first";
+			else if(num <= 3){
 				return "Enjoy!";
 			}
 			else{
-				return "To much!";
+				return "Too Much!";
 			}
-			}
-		};
+		}
 	};
 
 })();
